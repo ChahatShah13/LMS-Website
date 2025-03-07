@@ -8,7 +8,8 @@
 @theme{
   --text-course-hadding-small:36px;
   --text-course-hadding-large:44px;
-
+  --max-width-cursor-card: 400px;
+  --shadow-custom-card : 0px 4px 15px 2px  rgba(0, 0, 0, 0.1);
 }
 
 @layer base{
