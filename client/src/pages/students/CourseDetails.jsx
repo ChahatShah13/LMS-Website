@@ -5,11 +5,13 @@ import Loading from "../../components/students/Loading";
 import { assets } from "../../assets/assets";
 import humanizeDuration from "humanize-duration";
 import Footer from "../../components/students/Footer";
+import Youtube from "react-youtube";
 const CourseDetails = () => {
   const { id } = useParams();
   const [courseData, setCourseData] = useState(null);
   const [openSection, setOpenSection] = useState({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
+  const [playerData, setPlayerData] = useState(null);
 
   const {
     allCourses,
@@ -130,7 +132,16 @@ const CourseDetails = () => {
                             <p>{lecture.lectureTitle}</p>
                             <div className="flex gap-2">
                               {lecture.isPreviewFree && (
-                                <p className="text-blue-500 cursor-pointer">
+                                <p
+                                  onClick={() =>
+                                    setPlayerData({
+                                      videoId: lecture.lectureUrl
+                                        .split("/")
+                                        .pop(),
+                                    })
+                                  }
+                                  className="text-blue-500 cursor-pointer"
+                                >
                                   Preview
                                 </p>
                               )}
@@ -166,7 +177,16 @@ const CourseDetails = () => {
 
         {/* Right Column */}
         <div className="max-w-cursor-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px] sm:min-w-[420px]">
-          <img src={courseData.courseThumbnail} alt="Course Thumbnail" />
+          {playerData ? (
+            <Youtube
+              videoId={playerData.videoId}
+              opts={{ playerVars: { autoplay: 1 } }}
+              iframeClassName="w-full aspect-video"
+            />
+          ) : (
+            <img src={courseData.courseThumbnail} alt="Course Thumbnail" />
+          )}
+
           <div className="p-5">
             <div className="flex items-center gap-2">
               <img
@@ -227,7 +247,9 @@ const CourseDetails = () => {
             </button>
 
             <div className="pt-6">
-              <p className="md:text-xl text-lg font-medium text-gray-800">What's in the course?</p>
+              <p className="md:text-xl text-lg font-medium text-gray-800">
+                What's in the course?
+              </p>
               <ul className="ml-4 pt-2 text-sm md:text-default list-disc text-gray-500">
                 <li>Lifetime access with free updates.</li>
                 <li>Step-by-step, hands-on project guidance.</li>
@@ -239,7 +261,7 @@ const CourseDetails = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   ) : (
     <Loading />
