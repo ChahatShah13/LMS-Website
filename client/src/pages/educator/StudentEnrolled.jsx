@@ -19,12 +19,12 @@ const StudentEnrolled = () => {
         <table className="table-fixed md:table-auto w-full overflow-hidden pb-4">
           <thead className="text-gray-900 border-b border-gray-500/20 text-sm text-left">
             <tr>
-              <th className="px-4 py-3 font-semibold text-center hidden sm: table-cell">
+              <th className="px-4 py-3 font-semibold text-center hidden sm:table-cell">
                 #
               </th>
               <th className="px-4 py-3 font-semibold">Student Name</th>
               <th className="px-4 py-3 font-semibold">Course Title</th>
-              <th className="px-4 py-3 font-semibold hidden sm: table-cell">
+              <th className="px-4 py-3 font-semibold hidden sm:table-cell">
                 Date
               </th>
             </tr>
@@ -32,7 +32,7 @@ const StudentEnrolled = () => {
           <tbody className="text-sm text-gray-500">
             {enrolledStudent.map((item, index) => (
               <tr key={index} className="border-b border-gray-500/20">
-                <td className="px-4 py-3 text-center hidden sm: table-cell">
+                <td className="px-4 py-3 text-center hidden sm:table-cell">
                   {index + 1}
                 </td>
                 <td className="md:px-4 px-2 py-3 flex items-center space-x-3">
@@ -44,7 +44,7 @@ const StudentEnrolled = () => {
                   <span className="truncate">{item.student.name}</span>
                 </td>
                 <td className="px-4 py-3 truncate">{item.courseTitle} </td>
-                <td className="px-4 py-3 hidden sm: table-cell">
+                <td className="px-4 py-3 hidden sm:table-cell">
                   {new Date(item.purchaseDate).toLocaleDateString()}
                 </td>
               </tr>
