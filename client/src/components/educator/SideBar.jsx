@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const SideBar = () => {
   const { isEducator } = useContext(AppContext);
   const menuItems = [
-    { name: "Dashboard", path: "/educator", icon: assets.home_icon },
+    { name: "Dashboard", path: "educator", icon: assets.home_icon },
     {
       name: "Add Course",
       path: "/educator/add-courses",
